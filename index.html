@@ -1,0 +1,175 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Hanfei Sun</title>
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        html, body {
+            overflow: hidden;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Open Sans', 'Helvetica Neue', 'Hiragino Sans GB', 'LiHei Pro', Arial, sans-serif;
+            color: #333;
+        }
+
+        #wrapper {
+            position: absolute;
+            left: 0;
+            width: 320px;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            margin-left: -160px;
+            margin-top: -160px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        h1 {
+            font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 700;
+            font-size: 30px;
+            letter-spacing: 9px;
+            text-transform: uppercase;
+            margin: 12px 0;
+            left: 4px;
+        }
+
+        h2 {
+            color: #999;
+            font-weight: normal;
+            font-size: 15px;
+            letter-spacing: .12em;
+            margin-bottom: 30px;
+            left: 3px;
+        }
+
+        h1, h2 {
+            position: relative;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 2em;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        a {
+            color: #999;
+            text-decoration: none;
+            transition: color .2s ease;
+        }
+
+        a:hover {
+            color: #f33;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            src: local('Montserrat-Bold'), url(http://fonts.gstatic.com/s/montserrat/v7/IQHow_FEYlDC4Gzy_m8fcmaVI6zN22yiurzcBKxPjFE.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+        /* cyrillic-ext */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/K88pR3goAWT7BTt32Z01m4X0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+            unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
+        }
+        /* cyrillic */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/RjgO7rYTmqiVp7vzi-Q5UYX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+            unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+        }
+        /* greek-ext */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/LWCjsQkB6EMdfHrEVqA1KYX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+            unicode-range: U+1F00-1FFF;
+        }
+        /* greek */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/xozscpT2726on7jbcb_pAoX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+            unicode-range: U+0370-03FF;
+        }
+        /* vietnamese */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/59ZRklaO5bWGqF5A9baEEYX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+            unicode-range: U+0102-0103, U+1EA0-1EF9, U+20AB;
+        }
+        /* latin-ext */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/u-WUoqrET9fUeobQW7jkRYX0hVgzZQUfRDuZrPvH3D8.woff2) format('woff2');
+            unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+        }
+        /* latin */
+        @font-face {
+            font-family: 'Open Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Open Sans'), local('OpenSans'), url(http://fonts.gstatic.com/s/opensans/v13/cJZKeOuBrn4kERxqtaUH3ZBw1xU1rKptJj_0jans920.woff2) format('woff2');
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+        }
+
+    </style>
+
+</head>
+<body>
+<div id="wrapper">
+    <h1>Jay Chan</h1>
+    <h2>Front-end Engineer&nbsp;</h2>
+    <p><a href="https://github.com/Junhong-Chen" target="_blank">Github</a></p>
+    <p><a href="" target="_blank">Twitter</a></p>
+    <p><a href="https://www.zhihu.com/people/chen-jun-hong-42-46/activities" target="_blank">知乎</a></p>
+    <p><a href="mailto:316028133@qq.com" type="Email">Email</a></p>
+ 
+</div>
+<canvas width="2880" height="1530"></canvas>
+<script>
+    function i(){if(ctx.clearRect(0,0,w,h),firstTime)for(q=[{x:0,y:.7*h+bandwidth,v_x:0,v_y:0},{x:0,y:.7*h-bandwidth,v_x:0,v_y:0}],verticals.push(q[0]),verticals.push(q[1]);q[1].x<w+bandwidth;)firstDraw(q[0],q[1]);else for(var t=0,e=1;e<verticals.length-1;)tweak(t,e),t++,e++;firstTime=!1,requestAnimationFrame(i)}function go(t){random()<.5||(t.v_x+=.1*(random()-.5)),random()<.5||(t.v_y+=.1*(random()-.499));var e=.3;t.v_x=Math.max(Math.min(t.v_x,e),-e),t.v_y=Math.max(Math.min(t.v_y,e),-e),t.x+=t.v_x,t.y+=t.v_y,(t.x<0||t.x>w)&&(t.v_x*=-1.01),(t.y<0||t.y>h)&&(t.v_y*=-1.01)}function tweak(t,e){ctx.beginPath();var i=verticals[t],a=verticals[e],o=verticals_side[t],r=fillStyles[t];go(a),ctx.moveTo(i.x,i.y),ctx.lineTo(a.x,a.y),go(o),ctx.lineTo(o.x,o.y),ctx.closePath(),ctx.strokeStyle=r,ctx.stroke()}function firstDraw(t,e){ctx.beginPath(),ctx.moveTo(t.x,t.y),ctx.lineTo(e.x,e.y);var i=e.x+(2*random()-.25)*bandwidth,a=y(e.y);ctx.lineTo(i,a),ctx.closePath(),r-=twoPi/-50,ctx.strokeStyle="#"+(127*cos(r)+128<<16|127*cos(r+twoPi/3)+128<<8|127*cos(r+twoPi/3*2)+128).toString(16),ctx.stroke(),q[0]=q[1],q[1]={x:i,y:a,v_x:0,v_y:0},verticals.push(q[1]),fillStyles.push(ctx.strokeStyle),verticals_side.push(q[1])}function y(t){var e=t+(2*random()-1.1)*bandwidth;return e>h||0>e?y(t):e}document.addEventListener("touchmove",function(t){t.preventDefault()});var convas=document.getElementsByTagName("canvas")[0],ctx=convas.getContext("2d"),pr=window.devicePixelRatio||1,w=window.innerWidth,h=window.innerHeight,bandwidth=90,q,r=0,twoPi=2*Math.PI,cos=Math.cos,random=Math.random;convas.width=w*pr,convas.height=h*pr,ctx.scale(pr,pr),ctx.globalAlpha=.05;var verticals=[],verticals_side=[],fillStyles=[],firstTime=!0;requestAnimationFrame(i);
+</script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-84825886-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+</body>
+<div></div>
+</html>
